@@ -24,7 +24,14 @@ var actions = {
     'GET': function(request, response){
       utils.respond(response, _storage);
     },
-    // 'POST': function(request, response){},
+    'POST': function(request, response){
+      utils.fetchData(request, function(data){
+        data.objectId = utils.generateUUID();
+        data.roomname = 'lobby';
+        _messages.push(data);
+      });
+      utils.respond(response, _storage);
+    },
     // 'PUT': function(request, response){},
     // 'DELETE': function(request, response){},
 
