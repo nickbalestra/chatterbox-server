@@ -13,7 +13,6 @@ this file and include it in basic-server.js so that it actually works.
 **************************************************************/
 var url = require('url');
 var utils = require('./utils');
-var _cache = [1,2,3];
 
 var url = require('url');
 var utils = require('./utils');
@@ -22,7 +21,7 @@ var utils = require('./utils');
 // The routes hash maps registered endpoint URLs
 // with their relative handler modules.
 var routes = {
-  '/ping' : require('./endPoints/messages')
+  '/1/classes/chatterbox/' : require('./endPoints/messages')
 };
 
 // The router module check the url of the request
