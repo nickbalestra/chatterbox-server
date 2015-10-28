@@ -8,6 +8,8 @@ var Messages = Backbone.Collection.extend({
   },
 
   parse: function(response, options) {
-    return response.results.reverse();
+    return response.results;
+    // TODO: implement api query for the endopint to orded message by creation timestamp
+    // return response.results.reverse();
   }
 });

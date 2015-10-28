@@ -10,9 +10,8 @@ var actions = {
     },
     'POST': function(request, response){
       utils.fetchData(request, function(data){
+        console.log(data);
         data.objectId = utils.generateUUID();
-        data.roomname = 'lobby';
-        
         storage.set(data, function(foo){
           utils.respond(response, data);
         });
