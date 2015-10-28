@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 var headers = {
   "access-control-allow-origin": "*",
   "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
@@ -41,4 +43,18 @@ exports.generateUUID = function(){
     return (c=='x' ? r : (r&0x3|0x8)).toString(16);
   });
   return uuid;
+}
+
+exports.sendFileContent = function(response, fileName, contentType){
+  fs.readFile(fileName, function(err, data){
+    if(err){
+      response.writeHead(404);
+      response.write("Not Found!");
+    }
+    else{
+      response.writeHead(200, {'Content-Type': contentType});
+      response.write(data);
+    }
+    response.end();
+  });
 }

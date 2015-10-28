@@ -16,7 +16,7 @@ var _messages = [
     // createdAt: '2015-10-27T21:38:45.333Z',
     // updatedAt: '2015-10-27T21:38:45.333Z'
   }
-]
+];
 var _storage = {results: _messages};
 
 
@@ -34,7 +34,6 @@ var actions = {
     },
     // 'PUT': function(request, response){},
     // 'DELETE': function(request, response){},
-
     'OPTIONS': function(request, response){
       utils.respond(response, _storage);
     }

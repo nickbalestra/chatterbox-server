@@ -13,9 +13,8 @@ this file and include it in basic-server.js so that it actually works.
 **************************************************************/
 var url = require('url');
 var utils = require('./utils');
+var fs = require('fs');
 
-var url = require('url');
-var utils = require('./utils');
 
 
 // The routes hash maps registered endpoint URLs
@@ -30,9 +29,18 @@ var routes = {
 // isn't a valid registered route a 404
 // reponse will be sent back instead.
 module.exports = function(request, response) {
-  var routeHandler = routes[url.parse(request.url).pathname];
+  var pathname = url.parse(request.url).pathname;
+  var routeHandler = routes[pathname];
+  var isFile = pathname.match(/^.*\.(html|css|js|gif)$/);
+
   if (routeHandler){
     routeHandler.requestHandler(request, response);
+  } else if (isFile || pathname === '/') {
+
+    var fileToServe = (isFile) ? isFile[0] : 'index.html';
+    var contentType = (isFile) ? 'text/' + isFile[1] : 'text/html';
+    utils.sendFileContent(response, "client/" + fileToServe, contentType);
+
   } else {
     utils.respond(response, 'Oups', 404);
   }
