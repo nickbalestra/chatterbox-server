@@ -13,7 +13,13 @@ The repository consist of
 
 #### Chatterbox server 
 
-The server is able to handle GET/POST/OPTIONS requests. It Implement CORS to handle cross domain issues. 
+The server features at a glance :
+
+- GET/POST/OPTIONS requests. 
+- Support CORS to handle cross domain issues. 
+- Serve Static Assets (css/html/js/img)
+- Persistent storage on file.
+
 Its architecture allows to easily extend the request handler router and add as many endpoints as needed.
 
 ## Install:
