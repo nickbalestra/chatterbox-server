@@ -19,11 +19,11 @@ var actions = {
       });
     
     },
-    // 'PUT': function(request, response){},
-    // 'DELETE': function(request, response){},
     'OPTIONS': function(request, response){
       utils.respond(response, _storage);
     }
+    // 'PUT': function(request, response){},
+    // 'DELETE': function(request, response){},
 };
 
 exports.requestHandler = utils.actionDispatcher(actions);

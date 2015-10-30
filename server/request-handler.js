@@ -1,16 +1,4 @@
-/*************************************************************
 
-You should implement your request handler function in this file.
-
-requestHandler is already getting passed to http.createServer()
-in basic-server.js, but it won't work as is.
-
-You'll have to figure out a way to export this function from
-this file and include it in basic-server.js so that it actually works.
-
-*Hint* Check out the node module documentation at http://nodejs.org/api/modules.html.
-
-**************************************************************/
 var url = require('url');
 var utils = require('./utils');
 var fs = require('fs');
@@ -35,6 +23,8 @@ var MIME = {
 // relative handler. If the requested endpoint
 // isn't a valid registered route a 404
 // reponse will be sent back instead.
+// For get request on '/' or for any filetype suppoert in the MIME hash
+// serve the static app and the relative files 
 module.exports = function(request, response) {
   var pathname = url.parse(request.url).pathname;
   var routeHandler = routes[pathname];
