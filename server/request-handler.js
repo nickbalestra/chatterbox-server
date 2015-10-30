@@ -23,6 +23,13 @@ var routes = {
   '/1/classes/chatterbox/' : require('./endPoints/messages')
 };
 
+var MIME = {
+  html: 'text/html',
+  css: 'text/css',
+  js: 'text/javascript',
+  gif: 'image/gif'
+}
+
 // The router module check the url of the request
 // against the routes hash and route the request to its
 // relative handler. If the requested endpoint
@@ -32,13 +39,12 @@ module.exports = function(request, response) {
   var pathname = url.parse(request.url).pathname;
   var routeHandler = routes[pathname];
   var isFile = pathname.match(/^.*\.(html|css|js|gif)$/);
+  var fileToServe = (isFile) ? isFile[0] : 'index.html';
+  var contentType = (isFile) ? MIME[isFile[1]] : MIME.html;
 
   if (routeHandler){
     routeHandler.requestHandler(request, response);
   } else if (isFile || pathname === '/') {
-
-    var fileToServe = (isFile) ? isFile[0] : 'index.html';
-    var contentType = (isFile) ? 'text/' + isFile[1] : 'text/html';
     utils.sendFileContent(response, "client/" + fileToServe, contentType);
 
   } else {
