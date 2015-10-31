@@ -35,15 +35,6 @@ exports.actionDispatcher = function(actionsHash){
   }
 };
 
-exports.generateUUID = function(){
-  var d = new Date().getTime();
-  var uuid = 'xxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    var r = (d + Math.random()*16)%16 | 0;
-    d = Math.floor(d/16);
-    return (c=='x' ? r : (r&0x3|0x8)).toString(16);
-  });
-  return uuid;
-}
 
 exports.sendFileContent = function(response, fileName, contentType){
   fs.readFile(fileName, function(err, data){
@@ -58,3 +49,16 @@ exports.sendFileContent = function(response, fileName, contentType){
     response.end();
   });
 }
+
+// Depecrated, replaced with the npm module node-uuid
+// see https://github.com/broofa/node-uuid
+//
+// exports.generateUUID = function(){
+//   var d = new Date().getTime();
+//   var uuid = 'xxxxxxxxxx'.replace(/[xy]/g, function(c) {
+//     var r = (d + Math.random()*16)%16 | 0;
+//     d = Math.floor(d/16);
+//     return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+//   });
+//   return uuid;
+// }

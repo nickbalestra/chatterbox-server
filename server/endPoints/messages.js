@@ -1,5 +1,6 @@
 var utils = require('../utils');
 var storage = require('../storage');
+var uuid = require('node-uuid');
 
 var actions = {
     'GET': function(request, response){
@@ -11,7 +12,7 @@ var actions = {
     'POST': function(request, response){
       utils.fetchData(request, function(data){
         console.log(data);
-        data.objectId = utils.generateUUID();
+        data.objectId = uuid.v1();
         storage.set(data, function(foo){
           utils.respond(response, data);
         });
